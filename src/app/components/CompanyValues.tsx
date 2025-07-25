@@ -2,23 +2,25 @@
 
 import { motion } from 'framer-motion';
 import { RocketLaunchIcon, LightBulbIcon, HeartIcon } from '@heroicons/react/24/outline';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function CompanyValues() {
+  const { translations } = useLanguage();
   const values = [
     {
       icon: RocketLaunchIcon,
-      title: 'Missão',
-      description: 'Fornecer soluções técnicas de excelência em estudos elétricos, contribuindo para o desenvolvimento do setor elétrico nacional e internacional.'
+      title: translations.values.mission.title,
+      description: translations.values.mission.description
     },
     {
       icon: LightBulbIcon,
-      title: 'Visão',
-      description: 'Ser referência em consultoria de estudos elétricos, reconhecida pela qualidade, confiabilidade e inovação de nossas soluções.'
+      title: translations.values.vision.title,
+      description: translations.values.vision.description
     },
     {
       icon: HeartIcon,
-      title: 'Valores',
-      description: 'Excelência técnica, compromisso com o cliente, inovação, ética e sustentabilidade.'
+      title: translations.values.values.title,
+      description: translations.values.values.description
     }
   ];
 
@@ -33,7 +35,7 @@ export default function CompanyValues() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Nossos Diferenciais
+            {translations.values.title}
           </h2>
         </motion.div>
 

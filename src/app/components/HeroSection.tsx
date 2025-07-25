@@ -2,12 +2,12 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import Navbar from './Navbar';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function HeroSection() {
+  const { translations } = useLanguage();
   return (
-    <section className="relative h-screen flex flex-col overflow-hidden bg-gradient-to-b from-blue-900 to-blue-800">
-      <Navbar />
+    <section className="relative min-h-screen flex flex-col overflow-hidden bg-gradient-to-b from-blue-900 to-blue-800 pt-20">
       <div className="absolute inset-0 z-0 opacity-20">
         <Image
           src="/images/hero-bg.jpg"
@@ -26,10 +26,13 @@ export default function HeroSection() {
           className="text-center text-white max-w-5xl"
         >
           <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-            Consultoria de estudos elétricos: brasileira e especializada no Sistema Interligado Nacional.
+            {translations.hero.title}
           </h1>
+          <p className="text-2xl mb-4 text-orange-400">
+            {translations.hero.subtitle}
+          </p>
           <p className="text-xl md:text-2xl mb-8 text-blue-100">
-            Elaboramos estudos elétricos práticos, customizados e tecnicamente consistentes.
+            {translations.hero.description}
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <motion.button
@@ -37,14 +40,14 @@ export default function HeroSection() {
               whileTap={{ scale: 0.95 }}
               className="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition-colors"
             >
-              Solicite seu Estudo
+              {translations.nav.cta}
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="bg-white text-blue-900 font-semibold py-3 px-8 rounded-lg shadow-lg hover:bg-blue-50 transition-colors"
             >
-              Fale com um Especialista
+              {translations.hero.cta}
             </motion.button>
           </div>
         </motion.div>

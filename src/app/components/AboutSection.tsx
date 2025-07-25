@@ -1,24 +1,31 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ClockIcon, CheckBadgeIcon, AcademicCapIcon } from '@heroicons/react/24/outline';
+import { ClockIcon, CheckBadgeIcon, AcademicCapIcon, GlobeAmericasIcon, UserGroupIcon } from '@heroicons/react/24/outline';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function AboutSection() {
-  const highlights = [
+  const { translations } = useLanguage();
+  const stats = [
     {
       icon: ClockIcon,
-      title: '10+ anos de experiência',
-      description: 'Atuação consolidada no mercado nacional e internacional'
+      value: '10+',
+      label: translations.about.experience
     },
     {
       icon: CheckBadgeIcon,
-      title: 'Estudos certificados',
-      description: 'Conformidade com as normas técnicas e regulatórias'
+      value: '500+',
+      label: translations.about.projects
     },
     {
-      icon: AcademicCapIcon,
-      title: 'Rigor teórico',
-      description: 'Equipe altamente qualificada e especializada'
+      icon: UserGroupIcon,
+      value: '200+',
+      label: translations.about.clients
+    },
+    {
+      icon: GlobeAmericasIcon,
+      value: '5',
+      label: translations.about.countries
     }
   ];
 
@@ -33,17 +40,15 @@ export default function AboutSection() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-6">
-            Quem Somos
+            {translations.about.title}
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            A Nexo Estudos Elétricos é uma empresa brasileira especializada em consultoria e elaboração de estudos elétricos,
-            com atuação nacional e internacional. Nossa expertise no Sistema Interligado Nacional nos permite oferecer
-            soluções técnicas precisas e eficientes.
+            {translations.about.description}
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {highlights.map((item, index) => (
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          {stats.map((item, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}

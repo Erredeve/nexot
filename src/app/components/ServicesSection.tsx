@@ -2,41 +2,45 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { useLanguage } from '@/context/LanguageContext';
 
-const services = [
+const getServices = (translations: any) => [
   {
-    title: 'Estudos para Projetos Básicos',
-    description: 'Estudos associados ao Projeto Básico de Empreendimentos da Rede Básica, solicitados pelo ONS.',
+    title: translations.services.basicProjects.title,
+    description: translations.services.basicProjects.description,
     imagePath: '/images/projetos-basicos.jpg'
   },
   {
-    title: 'Estudos de Acesso',
-    description: 'Estudos para Parecer de Acesso e integração à Rede Básica/Distribuição (geração hidráulica, térmica, fotovoltaica, eólica).',
+    title: translations.services.accessStudies.title,
+    description: translations.services.accessStudies.description,
     imagePath: '/images/estudos-acesso.jpg'
   },
   {
-    title: 'Estudos Pré-Operacionais',
-    description: 'Estudos para integração de instalações à Rede Básica na fase pré-operacional.',
+    title: translations.services.preOperational.title,
+    description: translations.services.preOperational.description,
     imagePath: '/images/pre-operacionais.jpg'
   },
   {
-    title: 'Estudos para Relatórios R2',
-    description: 'Estudos para emissão de relatórios técnicos de novas instalações da Rede Básica (Relatório R2 - detalhamento da alternativa de referência).',
+    title: translations.services.r2Reports.title,
+    description: translations.services.r2Reports.description,
     imagePath: '/images/relatorios-r2.jpg'
   },
   {
-    title: 'Cadastramento SGBDIT',
-    description: 'Cadastramento de equipamentos de pátio, sistemas de proteção e linhas de transmissão nas bases de dados do ONS.',
+    title: translations.services.sgbdit.title,
+    description: translations.services.sgbdit.description,
     imagePath: '/images/cadastramento.jpg'
   },
   {
-    title: 'Modelagem de Usinas Renováveis',
-    description: 'Modelagem de usinas renováveis para estudos de transitórios eletromagnéticos e eletromecânicos, incluindo controle centralizado e inversores/aerogeradores.',
+    title: translations.services.renewableModeling.title,
+    description: translations.services.renewableModeling.description,
     imagePath: '/images/modelagem-renovaveis.jpg'
   }
 ];
 
 export default function ServicesSection() {
+  const { translations } = useLanguage();
+  const services = getServices(translations);
+
   return (
     <section id="servicos" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
@@ -48,7 +52,7 @@ export default function ServicesSection() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-6">
-            Nossos Serviços
+            {translations.services.title}
           </h2>
         </motion.div>
 

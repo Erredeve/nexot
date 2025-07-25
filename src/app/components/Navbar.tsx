@@ -4,16 +4,25 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { Bars3Icon, XMarkIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
+import { useLanguage } from '@/context/LanguageContext';
+const languages = [
+  { code: 'PT-BR' as const, name: 'Português', flag: '🇧🇷' },
+  { code: 'EN' as const, name: 'English', flag: '🇺🇸' },
+  { code: 'ES' as const, name: 'Español', flag: '🇪🇸' },
+];
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
+  const { language, setLanguage, translations } = useLanguage();
+  const currentLanguage = languages.find(lang => lang.code === language) || languages[0];
 
   const navItems = [
-    { name: 'Sobre', href: '#sobre' },
-    { name: 'Serviços', href: '#servicos' },
-    { name: 'Diferenciais', href: '#diferenciais' },
-    { name: 'Contato', href: '#contato' },
+    { name: translations.nav.about, href: '#sobre' },
+    { name: translations.nav.services, href: '#servicos' },
+    { name: translations.nav.differentials, href: '#diferenciais' },
+    { name: translations.nav.contact, href: '#contato' },
   ];
 
   return (
@@ -41,8 +50,45 @@ export default function Navbar() {
               whileTap={{ scale: 0.95 }}
               className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg transition-colors"
             >
-              Solicite seu Estudo
+              {translations.nav.cta}
             </motion.button>
+
+            {/* Language Dropdown */}
+            <div className="relative">
+              <motion.button
+                onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
+                className="flex items-center bg-white/10 px-3 py-2 rounded-lg text-white hover:bg-white/20 transition-colors"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span className="text-xl">{currentLanguage.flag}</span>
+                <ChevronDownIcon className="h-4 w-4 ml-1.5" />
+              </motion.button>
+
+              {isLanguageDropdownOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2"
+                >
+                  {languages.map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={() => {
+                        setLanguage(lang.code);
+                        setIsLanguageDropdownOpen(false);
+                      }}
+                      className={`flex items-center space-x-3 w-full px-4 py-2 text-left hover:bg-orange-100 transition-colors ${
+                        currentLanguage.code === lang.code ? 'text-orange-500 bg-orange-50' : 'text-gray-800'
+                      }`}
+                    >
+                      <span className="text-lg">{lang.flag}</span>
+                      <span>{lang.name}</span>
+                    </button>
+                  ))}
+                </motion.div>
+              )}
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -85,8 +131,31 @@ export default function Navbar() {
                 className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg transition-colors mx-4"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Solicite seu Estudo
+                {translations.nav.cta}
               </motion.button>
+
+              {/* Mobile Language Options */}
+              <div className="px-4 py-2">
+                <div className="flex flex-col space-y-2">
+                  {languages.map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={() => {
+                        setLanguage(lang.code);
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className={`flex items-center space-x-3 px-4 py-2 rounded-lg transition-colors ${
+                        currentLanguage.code === lang.code
+                          ? 'text-orange-500 bg-white/10'
+                          : 'text-white hover:text-orange-500 hover:bg-white/5'
+                      }`}
+                    >
+                      <span className="text-lg">{lang.flag}</span>
+                      <span>{lang.name}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
           </motion.div>
         )}
