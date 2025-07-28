@@ -5,8 +5,16 @@ import { useLanguage } from '@/context/LanguageContext';
 
 export default function ContactSection() {
   const { translations } = useLanguage();
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    // Aqui você pode adicionar a lógica para enviar os dados do formulário
+    // para uma API, por exemplo.
+    alert('Formulário enviado! (Esta é uma mensagem de exemplo)');
+  };
+
   return (
-    <section id="contato" className="py-20 bg-white">
+    <section id="contact" className="min-h-screen flex flex-col justify-center py-20 pt-32 md:pt-36 bg-white">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0 }}
@@ -24,7 +32,7 @@ export default function ContactSection() {
             </p>
           </div>
 
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}

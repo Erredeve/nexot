@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { Bars3Icon, XMarkIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
 import { useLanguage } from '@/context/LanguageContext';
+import { scrollToSection } from '@/utils/scroll';
 const languages = [
   { code: 'PT-BR' as const, name: 'Português', flag: '🇧🇷' },
   { code: 'EN' as const, name: 'English', flag: '🇺🇸' },
@@ -19,10 +20,10 @@ export default function Navbar() {
   const currentLanguage = languages.find(lang => lang.code === language) || languages[0];
 
   const navItems = [
-    { name: translations.nav.about, href: '#sobre' },
-    { name: translations.nav.services, href: '#servicos' },
-    { name: translations.nav.differentials, href: '#diferenciais' },
-    { name: translations.nav.contact, href: '#contato' },
+    { name: translations.nav.about, href: '#about' },
+    { name: translations.nav.services, href: '#services' },
+    { name: translations.nav.differentials, href: '#values' },
+    { name: translations.nav.contact, href: '#contact' },
   ];
 
   return (
@@ -30,20 +31,23 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center">
-            <span className="text-xl font-bold text-white">Nexo</span>
-          </Link>
+          <button
+            onClick={() => scrollToSection('home')}
+            className="flex items-center cursor-pointer"
+          >
+            <span className="text-xl font-bold text-white hover:text-orange-500 transition-colors">Nexo</span>
+          </button>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              <Link
+              <button
                 key={item.name}
-                href={item.href}
+                onClick={() => scrollToSection(item.href.substring(1))}
                 className="text-white hover:text-orange-500 transition-colors"
               >
                 {item.name}
-              </Link>
+              </button>
             ))}
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -116,14 +120,16 @@ export default function Navbar() {
           >
             <div className="flex flex-col space-y-4">
               {navItems.map((item) => (
-                <Link
+                <button
                   key={item.name}
-                  href={item.href}
-                  className="text-white hover:text-orange-500 transition-colors px-4 py-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-white hover:text-orange-500 transition-colors px-4 py-2 text-left w-full"
+                  onClick={() => {
+                    scrollToSection(item.href.substring(1));
+                    setIsMobileMenuOpen(false);
+                  }}
                 >
                   {item.name}
-                </Link>
+                </button>
               ))}
               <motion.button
                 whileHover={{ scale: 1.05 }}

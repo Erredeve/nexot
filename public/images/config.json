@@ -1,0 +1,32 @@
+{
+  "hero": {
+    "background": "https://images.unsplash.com/photo-1497435334941-8c899ee9e694?w=1920",
+    "description": "Modern office building with blue tinted windows"
+  },
+  "services": {
+    "basicProjects": {
+      "url": "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800",
+      "description": "Engineering blueprint and tools"
+    },
+    "accessStudies": {
+      "url": "https://images.unsplash.com/photo-1581094283545-5037c522a77c?w=800",
+      "description": "Power grid infrastructure"
+    },
+    "preOperational": {
+      "url": "https://images.unsplash.com/photo-1581094283764-6f8cf7fd6175?w=800",
+      "description": "Industrial control panel"
+    },
+    "r2Reports": {
+      "url": "https://images.unsplash.com/photo-1581094283484-2d1d3ffb5b7c?w=800",
+      "description": "Data analysis dashboard"
+    },
+    "sgbdit": {
+      "url": "https://images.unsplash.com/photo-1581094283623-2d2d2d2d2b9f?w=800",
+      "description": "Registration and documentation"
+    },
+    "renewableModeling": {
+      "url": "https://images.unsplash.com/photo-1581094283842-2d2d2d2d2b9e?w=800",
+      "description": "Renewable energy infrastructure"
+    }
+  }
+}

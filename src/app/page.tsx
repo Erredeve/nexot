@@ -4,18 +4,18 @@ import ServicesSection from './components/ServicesSection';
 import CompanyValues from './components/CompanyValues';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
-import Navbar from './components/Navbar';
 
 export default function Home() {
   return (
-    <main className="relative">
-      <Navbar />
-      <HeroSection />
-      <AboutSection />
-      <ServicesSection />
-      <CompanyValues />
-      <ContactSection />
+    <>
+      <main className="relative pt-20">
+        <HeroSection />
+        <AboutSection />
+        <ServicesSection />
+        <CompanyValues />
+        <ContactSection />
+      </main>
       <Footer />
-    </main>
+    </>
   );
 }

@@ -3,20 +3,12 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useLanguage } from '@/context/LanguageContext';
+import { scrollToSection } from '@/utils/scroll';
 
 export default function HeroSection() {
   const { translations } = useLanguage();
   return (
-    <section className="relative min-h-screen flex flex-col overflow-hidden bg-gradient-to-b from-blue-900 to-blue-800 pt-20">
-      <div className="absolute inset-0 z-0 opacity-20">
-        <Image
-          src="/images/hero-bg.jpg"
-          alt="Background"
-          fill
-          className="object-cover"
-          priority
-        />
-      </div>
+    <section id="home" className="relative min-h-screen flex flex-col overflow-hidden bg-gradient-to-b from-blue-900 to-blue-800 pt-24 md:pt-28">
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 flex items-center justify-center flex-1">
         <motion.div
@@ -36,6 +28,7 @@ export default function HeroSection() {
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <motion.button
+              onClick={() => scrollToSection('contact')}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition-colors"
@@ -43,6 +36,7 @@ export default function HeroSection() {
               {translations.nav.cta}
             </motion.button>
             <motion.button
+              onClick={() => scrollToSection('services')}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="bg-white text-blue-900 font-semibold py-3 px-8 rounded-lg shadow-lg hover:bg-blue-50 transition-colors"

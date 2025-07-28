@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { LanguageProvider } from '../context/LanguageContext';
+import Navbar from './components/Navbar';
+import PageTransition from './components/PageTransition';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -18,7 +20,12 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={inter.className}>
-        <LanguageProvider>{children}</LanguageProvider>
+        <LanguageProvider>
+          <Navbar />
+          <PageTransition>
+            {children}
+          </PageTransition>
+        </LanguageProvider>
       </body>
     </html>
   );
